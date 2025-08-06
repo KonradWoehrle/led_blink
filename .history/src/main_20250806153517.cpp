@@ -9,6 +9,13 @@ int main()
 
     while(1)
     {
-        BlinkLight.LedBlink();
-    }
+    LedDriver_GPIO Led{PA5};
+    Delay delay{};
+
+
+    Led.turnOn();
+    delay.delay(500000);
+    Led.turnOff();
+    delay.delay(500000);
+   }
 }
