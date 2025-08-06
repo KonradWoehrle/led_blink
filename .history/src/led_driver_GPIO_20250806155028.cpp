@@ -7,9 +7,10 @@ LedDriver_GPIO::LedDriver_GPIO(uint8_t ledPin) : ledPin_c(ledPin), ledHAL(ledPin
 
 void LedDriver_GPIO::init()
 {
-    ledHAL.ActivateClock();
-    ledHAL.ConfigurateAsOutput();
-    ledHAL.SetState(static_cast<bool>(LedState::Off));
+    LedHAL_GPIO Led(ledPin_c);
+    Led.ActivateClock();
+    Led.ConfigurateAsOutput();
+    Led.SetState(static_cast<bool>(LedState::Off));
 }
 
 void LedDriver_GPIO::turnOn()
