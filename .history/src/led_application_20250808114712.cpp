@@ -30,7 +30,6 @@ void BlinkLedApplication::PressButtonForLED()
         {
             Led.switchState();
             delay.delay_1ms(100);
-
             while(Button.IsPressed())
             delay.delay_1ms(100);
         }

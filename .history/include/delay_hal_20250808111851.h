@@ -1,5 +1,7 @@
 #include "define.h"
 
+typedef double f64_t;
+
 class Delay_HAL
 {
 public:

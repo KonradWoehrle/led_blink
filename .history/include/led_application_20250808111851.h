@@ -5,7 +5,7 @@
 class BlinkLedApplication
 {
     public:
-    BlinkLedApplication(uint8_t LedPin, uint8_t ButtonPin);
+    BlinkLedApplication(uint8_t);
     ~BlinkLedApplication() = default;
 
     void init();
@@ -16,5 +16,5 @@ private:
     uint8_t LedPin_c;
     LedDriver_GPIO Led;
     DelayDriver delay;
-    ButtonDriver Button;
+    ButtonDriver button;
 };

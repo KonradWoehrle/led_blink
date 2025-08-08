@@ -1,4 +1,6 @@
-#include "define.h"
+#include <stdint.h>
+
+typedef double f64_t;
 
 class Delay_HAL
 {
@@ -9,5 +11,5 @@ public:
     void delay(uint64_t pause);
 
 private:
-    uint64_t delay_factor_c = 290;
+    f64_t delay_factor_c = 1000;
 };

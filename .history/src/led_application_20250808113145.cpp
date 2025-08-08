@@ -8,7 +8,6 @@ BlinkLedApplication::BlinkLedApplication(uint8_t LedPin, uint8_t ButtonPin) : Le
 void BlinkLedApplication::init()
 {
     Led.init();
-    Button.init();
 }
 
 void BlinkLedApplication::LedBlink(uint64_t durationOn, uint64_t durationOff)
@@ -28,11 +27,11 @@ void BlinkLedApplication::PressButtonForLED()
     {
         if(Button.IsPressed())
         {
-            Led.switchState();
             delay.delay_1ms(100);
-
             while(Button.IsPressed())
             delay.delay_1ms(100);
+
+            Led.switchState();
         }
     }
 }

@@ -1,6 +1,6 @@
 #include "led_application.h"
 
-BlinkLedApplication::BlinkLedApplication(uint8_t LedPin, uint8_t ButtonPin) : LedPin_c(LedPin), Led(LedPin), delay(), Button(ButtonPin)
+BlinkLedApplication::BlinkLedApplication(uint8_t LedPin) : LedPin_c(LedPin), Led(LedPin), delay()
 {
 
 }
@@ -8,7 +8,6 @@ BlinkLedApplication::BlinkLedApplication(uint8_t LedPin, uint8_t ButtonPin) : Le
 void BlinkLedApplication::init()
 {
     Led.init();
-    Button.init();
 }
 
 void BlinkLedApplication::LedBlink(uint64_t durationOn, uint64_t durationOff)
@@ -26,13 +25,13 @@ void BlinkLedApplication::PressButtonForLED()
 {
     while(1)
     {
-        if(Button.IsPressed())
+        if(button.IsPressed())
         {
-            Led.switchState();
+            delay.delay_1ms(100);
+            while(button.IsPressed())
             delay.delay_1ms(100);
 
-            while(Button.IsPressed())
-            delay.delay_1ms(100);
+            Led.switchState();
         }
     }
 }

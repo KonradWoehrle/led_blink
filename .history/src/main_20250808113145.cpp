@@ -5,8 +5,8 @@ constexpr uint8_t PC13 = 13;
 
 int main()
 {
-    BlinkLedApplication BlinkLight{PA5, PC13};
+    BlinkLedApplication BlinkLight{PA5};
     BlinkLight.init();
 
-    BlinkLight.PressButtonForLED();
+    BlinkLight.LedBlink();
 }

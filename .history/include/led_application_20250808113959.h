@@ -5,7 +5,7 @@
 class BlinkLedApplication
 {
     public:
-    BlinkLedApplication(uint8_t LedPin, uint8_t ButtonPin);
+    BlinkLedApplication(uint8_t, uint8_t);
     ~BlinkLedApplication() = default;
 
     void init();

@@ -10,5 +10,5 @@ public:
     void delay_1ms(uint64_t pause);
 
 private:
-    Delay_HAL Delay;
+    Delay_HAL Delay_HAL;
 };
