@@ -1,6 +1,4 @@
-#pragma once
-
-#include "config.h"
+#include "define.h"
 
 class ButtonHAL_GPIO
 {
@@ -13,5 +11,5 @@ public:
     bool CheckStatusButton();
 
 private:
-    uint8_t PortC_Pin_c;
+    uint8_t fPortC_Pin_c;
 };

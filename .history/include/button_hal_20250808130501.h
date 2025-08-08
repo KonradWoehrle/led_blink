@@ -1,6 +1,4 @@
-#pragma once
-
-#include "config.h"
+#include "define.h"
 
 class ButtonHAL_GPIO
 {
