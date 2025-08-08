@@ -8,7 +8,7 @@ class BlinkLedApplication
     ~BlinkLedApplication() = default;
 
     void init();
-    void LedBlink(uint64_t durationOn = 100, uint64_t durationOff = 900);
+    void LedBlink(uint64_t durationOn = 20, uint64_t durationOff = 400);
 
 private:
     uint8_t LedPin_c;

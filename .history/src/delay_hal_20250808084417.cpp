@@ -1,0 +1,8 @@
+#include "delay_hal.h"
+
+void Delay_HAL::delay(uint64_t pause)
+{
+    pause *= static_cast<uint64_t>(delay_factor_c);
+
+    for (volatile uint32_t i = 0; i < pause; ++i);
+}
