@@ -16,8 +16,8 @@ bool ButtonDriver::IsPressed()
 {
     if(retVal_c != ButtonHAL.CheckStatusButton())
     {
-        while(retVal_c != ButtonHAL.CheckStatusButton());
         delay.delay_1ms(50);
+        while(retVal_c != ButtonHAL.CheckStatusButton());
         retVal_c = !retVal_c;
     }
 
