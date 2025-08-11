@@ -17,5 +17,5 @@ GTEST_API_ int main(void)
     testing::InitGoogleTest();  //not supported in C environment
 #endif
 
-    return RUN_ALL_TESTS();
+    return RUN_ALL_TESTS();  
 }
