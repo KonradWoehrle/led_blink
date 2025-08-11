@@ -7,8 +7,7 @@ LedHAL_GPIO::LedHAL_GPIO(uint8_t ledPin) : PortA_Pin_c(ledPin)
 
 void LedHAL_GPIO::ActivateClock()
 {
-    // Enables the clock for GPIOA peripheral to allow configuration and usage of GPIOA pins.
-    RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
+    RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;    // new value = (old value | 0x00000001)
 }
 
 void LedHAL_GPIO::ConfigureAsOutput()
