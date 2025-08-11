@@ -5,8 +5,8 @@
 
 typedef double f64_t;
 
-constexpr uint8_t LedPin = 5;      // led pin
-constexpr uint8_t ButtonPin = 13;    // button pin
+constexpr uint8_t PA5 = 5;      // led pin
+constexpr uint8_t PC13 = 13;    // button pin
 
 #define BIT_MASK_1_BIT  0x01
 #define BIT_MASK_2_BIT  0x03
