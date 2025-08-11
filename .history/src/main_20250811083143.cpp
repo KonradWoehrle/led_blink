@@ -8,5 +8,5 @@ int main()
     BlinkLedApplication BlinkLight{PA5, PC13};
     BlinkLight.init();
 
-    BlinkLight.PressButtonForLED();
+    BlinkLight.LedBlink();
 }
