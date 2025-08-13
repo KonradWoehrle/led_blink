@@ -1,0 +1,1 @@
+ "P:/Users/WoehrleK/Data/Studium/Projekte/Ferien_25_SS_Google-Tests/TestUmgebung/05_Tests/GTest/build/win/lib/libgtest_main.a" "P:/Users/WoehrleK/Data/Studium/Projekte/Ferien_25_SS_Google-Tests/TestUmgebung/05_Tests/GTest/build/win/lib/libgtest.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

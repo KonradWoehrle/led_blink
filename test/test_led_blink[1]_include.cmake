@@ -1,0 +1,5 @@
+if(EXISTS "P:/Users/WoehrleK/Data/Studium/Projekte/Ferien_25_SS_Google-Tests/led_blink/test/test_led_blink[1]_tests.cmake")
+  include("P:/Users/WoehrleK/Data/Studium/Projekte/Ferien_25_SS_Google-Tests/led_blink/test/test_led_blink[1]_tests.cmake")
+else()
+  add_test(test_led_blink_NOT_BUILT test_led_blink_NOT_BUILT)
+endif()

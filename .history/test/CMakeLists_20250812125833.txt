@@ -1,0 +1,87 @@
+cmake_minimum_required(VERSION 3.19)
+project(Led_test)
+
+message ("Main Entry")
+
+# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/../../04_Tools/CMake")
+# include(${CMAKE_MODULE_PATH}/TestsCommon.cmake)
+# Tests_SetupCommon()
+
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        v1.13.0
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+# set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+# Compiler-Options fuer Code-Coverage. Dadurch werden die File .gcda und .gcno erzeugt
+add_compile_options(-fprofile-arcs -ftest-coverage -O0)
+
+# Includes fuer GoogleTest und GoogleMock
+# include_directories("./build/win/_deps/googletest-src/googletest/include"
+#                     "./build/win/_deps/googletest-src/googlemock/include")
+
+# Linker-Options fuer Code-Coverage
+add_link_options(-lgcov --coverage)
+# damit die .gcda und .gcno fuer gcov korrekt benamt werden (sonst .cpp.gcda und .cpp.gcno)
+set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)
+
+# For Debug-Output
+add_compile_options(-g)
+
+# Bibliotheken statisch linken, damit keine Pfadabhängigkeiten der Exe entstehen
+add_link_options(-static)
+
+# Damit ctest funktioniert
+enable_testing()
+
+# TestTest prueft ob googletest laeuft
+# set(SOURCES TestTest.cpp)
+
+# Alle gemeinsamen Include-Pfade
+# include("${SWE_DIR}/SWE-HELLO/IncludesPathes.cmake")
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}/../include
+)
+
+add_executable(TestProject
+  test_led_blink.cpp
+  ../src/led_blink.cpp
+)
+
+#############################################################
+# Ordner mit Tests
+# set(TESTS "${SWK_DIR}/SWK_Hello/Tests")
+
+#############################################################
+    # do not change
+# message("SWK_DIR       **********************  ${SWK_DIR}")
+# foreach(SINGLE_TEST ${TESTS})
+#     set(OUT_PATH_4 "${SINGLE_TEST}")
+#     string(REPLACE "/Tests" "" OUT_PATH_3 ${OUT_PATH_4})
+#     string(REPLACE ${SWK_DIR} "." OUT_PATH_2 ${OUT_PATH_3})
+#     string(REPLACE ${SWE_DIR} "." OUT_PATH_1 ${OUT_PATH_2})
+#     string(REPLACE ${SWS_DIR} "." OUT_PATH ${OUT_PATH_1})
+#     set(SUB_DIR ${SINGLE_TEST};${OUT_PATH})
+#     add_subdirectory(${SUB_DIR})
+# endforeach()
+
+
+target_link_libraries(
+  TestProject
+  PRIVATE gtest_main
+)
+
+include(CTest)
+include(GoogleTest)
+
+message ("Main Exit")
+
+# Ermitteln aller Tests
+gtest_discover_tests(TestProject
+                XML_OUTPUT_DIR "Report"
+)
+
