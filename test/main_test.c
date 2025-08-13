@@ -18,7 +18,7 @@
 GTEST_API_ int main(void)
 {
 	//configHardware();
-	
+
 #ifdef __cplusplus
     testing::InitGoogleTest();  //not supported in C environment
 #endif
