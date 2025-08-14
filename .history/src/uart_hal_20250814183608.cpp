@@ -71,7 +71,7 @@ char* UartHAL::receiveBuffer()
 
     while (index < sizeof(buffer) - 1)
     {
-        uint32_t timeout = 100000;
+        uint32_t timeout = 10000;
 
         while (!(UART4->ISR & USART_ISR_RXNE) && (timeout > 0))
         {
@@ -83,7 +83,7 @@ char* UartHAL::receiveBuffer()
         char c = UART4->RDR;
         buffer[index++] = c;
 
-    this->flushRX();    // empty RX
+        this->flushRX();    // empty RX
     }
 
     buffer[index] = '\0';

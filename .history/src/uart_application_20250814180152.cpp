@@ -17,7 +17,10 @@ void UART_Application::loop()
     {
         msg = Uart.receiveBuffer();
 
-        Uart.sendBuffer(msg, strlen(msg));
+        if (strcmp(msg, "ping\n") == 0)
+        {
+            Uart.sendBuffer("pong\n", 5);
+        }
     }
 }
 
@@ -25,7 +28,7 @@ void UART_Application::send()
 {
     while (1)
     {
-        Uart.sendBuffer("abcdefghijklmnopqrstuvwxyz\n", 26);
+        Uart.sendBuffer("abcdefghijklmnopqrstuvwxyz", 26);
         for (volatile int i = 0; i < 500000; ++i);
     }
 }

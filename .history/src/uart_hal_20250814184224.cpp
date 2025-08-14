@@ -71,7 +71,7 @@ char* UartHAL::receiveBuffer()
 
     while (index < sizeof(buffer) - 1)
     {
-        uint32_t timeout = 100000;
+        uint32_t timeout = 10000;
 
         while (!(UART4->ISR & USART_ISR_RXNE) && (timeout > 0))
         {
@@ -83,10 +83,10 @@ char* UartHAL::receiveBuffer()
         char c = UART4->RDR;
         buffer[index++] = c;
 
-    this->flushRX();    // empty RX
     }
 
     buffer[index] = '\0';
+    this->flushRX();    // empty RX
     return buffer;
 }
 
@@ -99,13 +99,13 @@ void UartHAL::flushRX()
     if (UART4->ISR & USART_ISR_FE)
         UART4->ICR |= USART_ICR_FECF;
 
-    if (UART4->ISR & USART_ISR_NE)
-        UART4->ICR |= USART_ICR_NCF;
+//    if (UART4->ISR & USART_ISR_NE)
+//        UART4->ICR |= USART_ICR_NCF;
 
     // delete fifo
-    while (UART4->ISR & USART_ISR_RXNE)
-    {
-        volatile char dump = UART4->RDR; // Zeichen verwerfen
-        dump += 1;
-    }
+//    while (UART4->ISR & USART_ISR_RXNE)
+//    {
+//        volatile char dump = UART4->RDR; // Zeichen verwerfen
+//        dump += 1;
+//    }
 }

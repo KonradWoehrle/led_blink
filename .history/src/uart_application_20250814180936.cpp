@@ -23,9 +23,16 @@ void UART_Application::loop()
 
 void UART_Application::send()
 {
+    /*
     while (1)
     {
-        Uart.sendBuffer("abcdefghijklmnopqrstuvwxyz\n", 26);
+        Uart.sendBuffer("abcdefghijklmnopqrstuvwxyz", 26);
+        for (volatile int i = 0; i < 500000; ++i);
+    }
+*/
+    while (1)
+    {
+        Uart.sendByte('s');
         for (volatile int i = 0; i < 500000; ++i);
     }
 }

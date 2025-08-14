@@ -8,6 +8,6 @@ int main()
 
     while (1)
     {
-        Uart.loop();
+        Uart.send();
     }
 }
