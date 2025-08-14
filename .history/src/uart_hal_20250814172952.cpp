@@ -16,15 +16,15 @@ void UartHAL::init()
     GPIOA->AFR[0]  |=  (8 << GPIO_AFRL_AFSEL0_Pos) | (8 << GPIO_AFRL_AFSEL1_Pos);   // AF8 for UART4
 
     // set baudrate
-    UART4->BRR = UART4_CLK_FREQ/UART4_BAUDRATE;
+    UART4->BRR = 34;
     //UART4->BRR = (uint32_t)((float)UART4_CLK_FREQ / UART4_BAUDRATE + 0.5f);
 
-    // activate UART
-    UART4->CR1 |= USART_CR1_UE;
 
     // activate Rx Tx
     UART4->CR1 |= USART_CR1_TE | USART_CR1_RE;
 
+    // activate UART
+    UART4->CR1 |= USART_CR1_UE;
 }
 
 void UartHAL::sendByte(uint8_t byte)

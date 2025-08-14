@@ -11,7 +11,7 @@ class UART_Application
     void init();
     void loop();
     void send();
-    UartHAL& getUartHAL();
+    UartHAL getUartHAL();
 
 private:
     UartHAL Uart;

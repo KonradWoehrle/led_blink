@@ -8,8 +8,8 @@
 
 typedef double f64_t;
 
-constexpr uint8_t LedPin = 5;       // led pin
-constexpr uint8_t ButtonPin = 13;   // button pin
+constexpr uint8_t LedPin = 5;      // led pin
+constexpr uint8_t ButtonPin = 13;    // button pin
 
 #define BIT_MASK_1_BIT  0x01
 #define BIT_MASK_2_BIT  0x03
@@ -17,7 +17,7 @@ constexpr uint8_t ButtonPin = 13;   // button pin
 #define BIT_MASK_4_BIT  0x0F
 
 // UART configurations
-#define UART4_CLK_FREQ   4000000       // taktfrequency for UART4
+#define UART4_CLK_FREQ   80000000       // taktfrequency for UART4
 #define UART4_BAUDRATE   115200         // baudrate
 
 // HAL for stm32nucleo L452RE

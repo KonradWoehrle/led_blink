@@ -26,6 +26,7 @@ void UART_Application::loop()
 
 void UART_Application::send()
 {
+    uint32_t brr = 694; // Startwert
     while (1)
     {
             Uart.sendBuffer("abcdefghijklmnopqrstuvwxyz", 26);
