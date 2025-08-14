@@ -1,0 +1,81 @@
+#include "uart_hal.h"
+
+
+void UartHAL::init()
+{
+    // activate tact
+    RCC->APB1ENR1 |= RCC_APB1ENR1_UART4EN;
+
+    // configurate GPIO
+    GPIOA->MODER   &= ~(GPIO_MODER_MODE0_Msk | GPIO_MODER_MODE1_Msk);               // reset
+    GPIOA->MODER   |=  (GPIO_MODER_MODE0_1 | GPIO_MODER_MODE1_1);                   // AF mode
+    GPIOA->AFR[0]  |=  (8 << GPIO_AFRL_AFSEL0_Pos) | (8 << GPIO_AFRL_AFSEL1_Pos);   // AF8 for UART4
+
+    // set baudrate
+    UART4->BRR = UART4_CLK_FREQ / UART4_BAUDRATE;
+
+    // activate Rx Tx
+    UART4->CR1 |= USART_CR1_TE | USART_CR1_RE;
+
+    // activate UART
+    UART4->CR1 |= USART_CR1_UE;
+}
+
+void UartHAL::sendByte(uint8_t byte)
+{
+    while (!(UART4->ISR & USART_ISR_TXE))
+    {
+        // wait until transmit data register is empty
+    }
+
+    // send byte
+    UART4->TDR = byte;
+}
+
+void UartHAL::sendBuffer(const char* data, size_t len)
+{
+    for(uint32_t i = 0; i < len; i++)
+    {
+        while (!(UART4->ISR & USART_ISR_TXE))
+        {
+            // wait until transmit data register is empty
+        }
+
+        // send byte
+        UART4->TDR = data[i];
+    }
+}
+
+char UartHAL::receiveByte()
+{
+    // Wait until a byte has been received
+    while (!(UART4->ISR & USART_ISR_RXNE))
+    {
+        // RXNE = Receive data register not empty
+    }
+
+    // Return the received byte
+    return UART4->RDR;
+}
+
+char* UartHAL::receiveBuffer()
+{
+    static char buffer[128];
+    uint32_t index = 0;
+
+    while (index < sizeof(buffer) - 1)
+    {
+        while (!(UART4->ISR & USART_ISR_RXNE))
+        {
+            // wait for byte
+        }
+
+        char c = UART4->RDR;
+        buffer[index++] = c;
+
+        if (c == '\n') break;
+    }
+
+    buffer[index] = '\0';
+    return buffer;
+}
