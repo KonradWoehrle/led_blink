@@ -26,13 +26,13 @@ void UART_Application::loop()
 
 void UART_Application::send()
 {
-    uint32_t brr = 86; // Startwert
+    uint32_t brr = 50; // Startwert
     while (1)
     {
             UART4->BRR = brr;
 
             Uart.sendBuffer("F", 1);
-        for (volatile int i = 0; i < 500000; ++i);
-        //brr++;
+        for (volatile int i = 0; i < 1000; ++i);
+        brr++;
     }
 }

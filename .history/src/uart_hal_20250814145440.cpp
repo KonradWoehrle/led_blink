@@ -19,7 +19,6 @@ void UartHAL::init()
     UART4->BRR = (UART4_CLK_FREQ + (UART4_BAUDRATE/2)) / UART4_BAUDRATE;
     //UART4->BRR = (uint32_t)((float)UART4_CLK_FREQ / UART4_BAUDRATE + 0.5f);
 
-
     // activate Rx Tx
     UART4->CR1 |= USART_CR1_TE | USART_CR1_RE;
 

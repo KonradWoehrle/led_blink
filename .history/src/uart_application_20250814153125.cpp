@@ -26,7 +26,7 @@ void UART_Application::loop()
 
 void UART_Application::send()
 {
-    uint32_t brr = 86; // Startwert
+    uint32_t brr = 4166; // Startwert
     while (1)
     {
             UART4->BRR = brr;
