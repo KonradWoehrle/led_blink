@@ -22,6 +22,7 @@ void UartHAL::init()
 
     // activate Rx Tx
     UART4->CR1 |= USART_CR1_TE | USART_CR1_RE;
+
 }
 
 void UartHAL::sendByte(uint8_t byte)
@@ -33,7 +34,7 @@ void UartHAL::sendByte(uint8_t byte)
 
     // send byte
     UART4->TDR = byte;
-
+    
 }   // funktioniert
 
 void UartHAL::sendBuffer(const char* data, size_t len)
@@ -64,12 +65,12 @@ char UartHAL::receiveByte()
 
 char* UartHAL::receiveBuffer()
 {
-    static char buffer[1024];
+    static char buffer[128];
     uint32_t index = 0;
 
     while (index < sizeof(buffer) - 1)
     {
-        uint32_t timeout = 100000;  // timeout tested with buffersize from 0 to 102400
+        uint32_t timeout = 100000;
 
         while (!(UART4->ISR & USART_ISR_RXNE) && (timeout > 0))
         {
@@ -78,11 +79,13 @@ char* UartHAL::receiveBuffer()
 
         if (timeout == 0) break;
 
-        buffer[index++] = UART4->RDR;
-    }
-    this->flushRX();    // empty RX
+        char c = UART4->RDR;
+        buffer[index++] = c;
 
-    buffer[index] = '\0';   // necessary for string commands
+    this->flushRX();    // empty RX
+    }
+
+    buffer[index] = '\0';
     return buffer;
 }
 
@@ -97,4 +100,11 @@ void UartHAL::flushRX()
 
     if (UART4->ISR & USART_ISR_NE)
         UART4->ICR |= USART_ICR_NCF;
+
+    // delete fifo
+    while (UART4->ISR & USART_ISR_RXNE)
+    {
+        volatile char dump = UART4->RDR; // Zeichen verwerfen
+        dump += 1;
+    }
 }

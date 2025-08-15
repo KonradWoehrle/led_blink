@@ -64,7 +64,7 @@ char UartHAL::receiveByte()
 
 char* UartHAL::receiveBuffer()
 {
-    static char buffer[1024];
+    static char buffer[102400];
     uint32_t index = 0;
 
     while (index < sizeof(buffer) - 1)

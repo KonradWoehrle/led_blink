@@ -69,7 +69,7 @@ char* UartHAL::receiveBuffer()
 
     while (index < sizeof(buffer) - 1)
     {
-        uint32_t timeout = 100000;  // timeout tested with buffersize from 0 to 102400
+        uint32_t timeout = 100000;
 
         while (!(UART4->ISR & USART_ISR_RXNE) && (timeout > 0))
         {
