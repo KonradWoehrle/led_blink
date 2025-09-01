@@ -1,13 +1,16 @@
 #include "config.h"
 #include "uart_application.h"
 
+extern UART_Application AppUart;
+
 int main()
 {
-    UART_Application Uart{};
-    Uart.init();
+    AppUart.init();
+
+    printf("Hello World");
 
     while (1)
     {
-        Uart.loop();
+        AppUart.loop();
     }
 }

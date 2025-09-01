@@ -1,5 +1,12 @@
 #include "uart_hal.h"
 
+// UartHAL Uart;
+// 
+// extern "C" int __io_putchar(int ch)
+// {
+//     Uart.sendByte(static_cast<uint8_t>(ch));
+//     return ch;
+// }
 
 void UartHAL::init()
 {
