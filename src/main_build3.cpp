@@ -1,5 +1,5 @@
 #include "config.h"
-#include "uart_application.h"
+#include "uart_driver.h"
 
 extern UART_Application AppUart;
 
