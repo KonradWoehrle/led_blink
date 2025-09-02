@@ -1,0 +1,1 @@
+#include "../test/test_target_hal.cpp"
