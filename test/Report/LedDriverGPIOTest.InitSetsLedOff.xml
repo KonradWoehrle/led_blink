@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites tests="1" failures="0" disabled="0" errors="0" time="0" timestamp="2025-09-02T08:45:47.877" name="AllTests">
-  <testsuite name="LedDriverGPIOTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="0" timestamp="2025-09-02T08:45:47.878">
-    <testcase name="InitSetsLedOff" file="P:\Users\WoehrleK\Data\Studium\Projekte\Ferien_25_SS_Google-Tests\led_blink\test\test_led_blink.cpp" line="4" status="run" result="completed" time="0" timestamp="2025-09-02T08:45:47.878" classname="LedDriverGPIOTest" />
+<testsuites tests="1" failures="0" disabled="0" errors="0" time="0" timestamp="2025-09-02T15:41:44.555" name="AllTests">
+  <testsuite name="LedDriverGPIOTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="0" timestamp="2025-09-02T15:41:44.555">
+    <testcase name="InitSetsLedOff" file="P:\Users\WoehrleK\Data\Studium\Projekte\Ferien_25_SS_Google-Tests\led_blink\test\test_led_blink.cpp" line="4" status="run" result="completed" time="0" timestamp="2025-09-02T15:41:44.555" classname="LedDriverGPIOTest" />
   </testsuite>
 </testsuites>
