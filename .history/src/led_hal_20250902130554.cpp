@@ -1,7 +1,9 @@
 #include "led_hal.h"
+#include "uart_driver.h"
 
 LedHAL_GPIO::LedHAL_GPIO(uint8_t ledPin) : PortA_Pin_c(ledPin)
 {
+    printf("PortA_Pin_c = %d\n", ledPin);
     state_c = false;
 }
 
@@ -48,12 +50,7 @@ bool LedHAL_GPIO::GetState() const
     return (GPIOA->ODR & (BIT_MASK_1_BIT << PortA_Pin_c)) != 0;
 }
 
-bool LedHAL_GPIO::GetStateForTest() const
+bool LedHAL_GPIO::GetState2() const
 {
     return state_c;
-}
-
-uint8_t LedHAL_GPIO::GetPortPin() const
-{
-    return PortA_Pin_c;
 }

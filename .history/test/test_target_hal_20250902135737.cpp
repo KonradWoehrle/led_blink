@@ -9,11 +9,6 @@ TEST(LedHAL_GPIO_Test, ActivateClock_activates_Clock)
     EXPECT_EQ(RCC->AHB2ENR, RCC_AHB2ENR_GPIOAEN);
 }
 
-TEST(LedHAL_GPIO_Test, GetPortPin)
-{
-    EXPECT_EQ(TestObject.GetPortPin(), LedPin);
-}
-
 TEST(LedHAL_GPIO_Test, SetStateFalse)
 {
     TestObject.SetState(false);

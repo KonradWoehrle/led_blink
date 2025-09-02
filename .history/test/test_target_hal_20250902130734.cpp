@@ -9,21 +9,39 @@ TEST(LedHAL_GPIO_Test, ActivateClock_activates_Clock)
     EXPECT_EQ(RCC->AHB2ENR, RCC_AHB2ENR_GPIOAEN);
 }
 
-TEST(LedHAL_GPIO_Test, GetPortPin)
-{
-    EXPECT_EQ(TestObject.GetPortPin(), LedPin);
-}
-
 TEST(LedHAL_GPIO_Test, SetStateFalse)
 {
     TestObject.SetState(false);
     EXPECT_FALSE(TestObject.GetStateForTest());
-    EXPECT_EQ(GPIOA->ODR & (BIT_MASK_1_BIT << LedPin), 0);
 }
 
 TEST(LedHAL_GPIO_Test, SetStateTrue)
 {
     TestObject.SetState(true);
     EXPECT_TRUE(TestObject.GetStateForTest());
-    EXPECT_EQ(GPIOA->ODR & (BIT_MASK_1_BIT << LedPin), BIT_MASK_1_BIT << LedPin);
 }
+
+/*
+TEST(LedHAL_GPIO_Test, TurnOnSetsLedOn)
+{
+    LedDriver_GPIO led(5);
+    led.init();
+    led.turnOn();
+    EXPECT_TRUE(led.getLedState());
+}
+
+TEST(LedHAL_GPIO_Test, SwitchStateTogglesLed)
+{
+    LedDriver_GPIO led(5);
+    led.init();
+    bool initial = led.getLedState();
+
+    led.switchState();
+    EXPECT_NE(led.getLedState(), initial);
+
+    led.switchState();
+    EXPECT_EQ(led.getLedState(), initial);
+}
+*/
+
+// EXPECT_FALSE

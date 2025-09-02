@@ -13,7 +13,6 @@ public:
     void SetState(bool state);
     bool GetState() const;
     bool GetStateForTest() const;
-    uint8_t GetPortPin() const;
 
 private:
     uint8_t PortA_Pin_c;

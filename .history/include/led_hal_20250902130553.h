@@ -12,8 +12,7 @@ public:
     void ConfigureAsOutput();
     void SetState(bool state);
     bool GetState() const;
-    bool GetStateForTest() const;
-    uint8_t GetPortPin() const;
+    bool GetState2() const;
 
 private:
     uint8_t PortA_Pin_c;

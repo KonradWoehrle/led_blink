@@ -52,8 +52,3 @@ bool LedHAL_GPIO::GetStateForTest() const
 {
     return state_c;
 }
-
-uint8_t LedHAL_GPIO::GetPortPin() const
-{
-    return PortA_Pin_c;
-}
