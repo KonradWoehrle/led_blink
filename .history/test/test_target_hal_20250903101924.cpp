@@ -21,6 +21,7 @@ TEST(LedHAL_GPIO_Test, SetStateFalse)
     TestObject.SetState(false);
     EXPECT_FALSE(TestObject.GetStateForTest());
     EXPECT_EQ((GPIOA->ODR & (BIT_MASK_1_BIT << LedPin)), 0);
+    SUCCEED();
 }
 
 TEST(LedHAL_GPIO_Test, SetStateTrue)
@@ -29,4 +30,3 @@ TEST(LedHAL_GPIO_Test, SetStateTrue)
     EXPECT_TRUE(TestObject.GetStateForTest());
     EXPECT_EQ((GPIOA->ODR & (BIT_MASK_1_BIT << LedPin)), BIT_MASK_1_BIT << LedPin);
 }
-

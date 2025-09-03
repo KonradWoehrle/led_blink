@@ -1,0 +1,12 @@
+
+@startuml Build 1 - Press Button for LED
+
+(Led Off) .> (while Button is pressed) : push Button
+(Led On) .> (while Button is pressed) : push Button
+
+(while Button is pressed) .> (Led switch State)
+(Led switch State) .> (turn Led on) : if Led is off
+(Led switch State) .> (turn Led off) : if Led is on
+(turn Led off) .> (Led Off)
+(turn Led on) .> (Led On)
+@enduml

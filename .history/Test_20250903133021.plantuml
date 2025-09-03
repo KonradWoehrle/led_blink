@@ -1,0 +1,6 @@
+
+@startuml Test world
+
+A -> B : Hello world
+
+@enduml
