@@ -1,0 +1,121 @@
+
+@startuml Build 1 - Press Button for LED
+top to bottom direction
+
+class UART_Driver
+{
+    +UART_Driver()
+    +~UART_Driver()
+    +init() : void
+    +loop() : void
+    +send() : void
+    +getUartHAL() : UartHAL&
+    -Uart : UartHAL
+}
+
+class UartHAL
+{
+    +UartHAL()
+    +~UartHAL()
+    +init() : void
+    +sendByte(uint8_t byte) : void
+    +sendBuffer(const char* data, size_t len) : void
+    +receiveByte() : char
+    +receiveBuffer() : char*
+    +flushRX() : void
+}
+
+together{
+    UART_Driver "1" *-----> "1" UartHAL
+}
+
+class ButtonDriver
+{
+  +ButtonDriver(uint8_t ButtonPin)
+  +~ButtonDriver()
+  +init() : void
+  +IsPressed() : bool
+  -retVal_c : bool
+  -ButtonHAL : ButtonHAL_GPIO
+  -delay : DelayDriver
+}
+
+ButtonDriver "1" *-r-> "1" DelayDriver
+ButtonDriver "1" *-d-> "1" ButtonHAL_GPIO
+
+class ButtonHAL_GPIO
+{
+    +ButtonHAL_GPIO(uint8_t PortC_Pin)
+    +~ButtonHAL_GPIO()
+    +ActivateClock() : void
+    +ConfigurateAsButton() : void
+    +CheckStatusButton() : bool
+    -PortC_Pin_c : uint8_t
+}
+
+class DelayDriver
+{
+    +DelayDriver()
+    +~DelayDriver()
+    +delay_1s(uint64_t pause) : void
+    +delay_1ms(uint64_t pause) : void
+    -Delay : Delay_HAL
+}
+
+DelayDriver "1" *-d-> "1" Delay_HAL
+
+class Delay_HAL
+{
+    +Delay_HAL()
+    +~Delay_HAL()
+    +delay(uint64_t pause) : void
+    -delay_factor_c : uint64_t
+}
+
+class BlinkLedApplication
+{
+    +BlinkLedApplication(uint8_t LedPin, uint8_t ButtonPin)
+    +~BlinkLedApplication()
+    +init() : void
+    +LedBlink(uint64_t durationOn = 100, uint64_t durationOff = 900) : void
+    +PressButtonForLED() : void
+    -LedPin_c : uint8_t
+    -Led : LedDriver_GPIO
+    -delay : DelayDriver
+    -Button : ButtonDriver
+}
+
+BlinkLedApplication "1" *-d-> "1" LedDriver_GPIO
+BlinkLedApplication "1" *-d-> "1" DelayDriver
+BlinkLedApplication "1" *-d-> "1" ButtonDriver
+
+class LedDriver_GPIO
+{
+    +LedDriver_GPIO(uint8_t ledPin)
+    +~LedDriver_GPIO()
+    +init() : void
+    +turnOn() : void
+    +turnOff() : void
+    +switchState() : void
+    getLedState() const : bool
+    -ledState_c : bool
+    ledHAL : LedHAL_GPIO
+}
+
+LedDriver_GPIO "1" *-d-> "1" LedHAL_GPIO
+
+class LedHAL_GPIO
+{
+    +LedHAL_GPIO(uint8_t ledPin)
+    +~LedHAL_GPIO()
+    +ActivateClock() : void
+    +ConfigureAsOutput() : void
+    +SetState(bool state) : void
+    +GetState() const : bool
+    +GetStateForTest() const : bool
+    +GetPortPin() const : uint8_t
+    -PortA_Pin_c : uint8_t
+    -stat_c : bool
+}
+
+@enduml

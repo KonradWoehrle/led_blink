@@ -1,0 +1,18 @@
+
+@startuml Build 1 - Press Button for LED
+
+class ButtonDriver {
+  -retVal_c : bool
+  -ButtonHAL : ButtonHAL_GPIO
+  -delay : DelayDriver
+  +ButtonDriver(uint8_t ButtonPin)
+  +~ButtonDriver()
+  +init() : void
+  +IsPressed() : bool
+}
+
+ButtonDriver "1" *-l- "1" ButtonHAL_GPIO
+ButtonDriver "1" *-r- "1" DelayDriver
+
+
+@enduml
